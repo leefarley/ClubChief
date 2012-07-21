@@ -1,0 +1,55 @@
+<h1>Edit User</h1>
+<%= form_for(@user, :method => :edit) do |f| %>
+
+	<label class="input-label">
+        <%= f.text_field :first_name, :class => "textbox" , :placeholder => "First Name" %><br />
+    </label>
+	<label class="input-label">
+        <%= f.text_field :last_name, :class => "textbox" , :placeholder => "Last Name" %><br />
+    </label>
+	<label class="input-label">
+        <%= f.text_field :email, :class => "textbox" , :placeholder => "Email" %><br />
+    </label>
+    <label class="input-label">
+        <%= f.text_field :student_id, :class => "textbox" , :placeholder => "Student ID" %><br />
+    </label>
+	<label class="input-label">
+        <%= f.text_field :address, :class => "textbox" , :placeholder => "Address" %><br />
+    </label>
+	<label class="input-label">
+        <%= f.text_field :phone, :class => "textbox" , :placeholder => "Contact number" %><br />
+    </label>
+
+    <%= f.submit "Save changes" , :class => "button edit_wide_btn"  %>
+    <% end %>
+<br/>
+<%= link_to 'Back', @user, :class => "button login_btn" , :style => "margin-top: 0;" %>
+<script type="text/javascript">
+   $(function(){
+       $(".textbox").addPlaceholder();
+        jQuery("#user_first_name").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter first name",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+       $("#user_last_name").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter last name",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+        $("#user_email").validate({
+            expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message: "Please enter a valid email",
+             error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+        $("#user_phone").validate({
+            expression: "if (!isNaN(VAL)) return true; else return false;",
+            message: "Enter a valid contact number",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+	});
+  </script>

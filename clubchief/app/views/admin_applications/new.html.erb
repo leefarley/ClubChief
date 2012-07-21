@@ -1,0 +1,13 @@
+<h1>Add new applicants to <%= @competition.name %></h1>
+<br />
+<br />
+<div class="list">
+	<% @users.each do |user| %>
+	<div class="row">
+		<h3 class="left"><%=user.full_name %></h3>
+        <%= link_to "", add_user_to_competition_path(:competition_id => @competition.id, :user_id => user.id), :class => "add_icon right"  %>
+	</div>
+	<% end %>
+</div>
+
+<%= link_to "Back", manage_competition_path(@competition.id), :class => "button login_btn" %>

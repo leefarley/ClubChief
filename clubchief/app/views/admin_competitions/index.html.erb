@@ -1,0 +1,31 @@
+<h1>Manage competitions</h1>
+
+<% if @competitions.count() > 0 %>
+    <div class="list">
+    <% @competitions.each do |competition| %>
+        <% applicantCount = competition.competition_applications.count %>
+        <div class="row_top"></div>
+        <div class="row_extend">
+            <span class="row_left">
+              <div class="row_header"><%= competition.name %></div>
+              Club: <%= competition.club.name %><br />
+              Applicants: <%= applicantCount %>
+            </span>
+            <span class="row_right" style="margin-right: 20px;">
+                <% if applicantCount == 0 %>
+                    <%= link_to "", admin_competition_path(competition), :confirm => 'Are you sure?', :method => :delete, :class => "delete_icon right" %>
+                <% end %>
+                <% if competition.deadline < Date.today %>
+                    <%= link_to "", manage_competition_path(competition.id), :class=>"manage_icon right" %>
+                <% end %>
+                    <%= link_to "", edit_admin_competition_path(competition), :class => "edit_icon right" %>
+            </span>
+            <div class="clear"></div>
+        </div>
+        <div class="row_bottom"></div>
+    <% end %>
+    </div>
+<% else %>
+    <h2>You currently have no competitions to manage</h2>
+<% end %>
+<%= link_to "Add competition", new_admin_competition_path, :class=>"button add_wide_btn" %>

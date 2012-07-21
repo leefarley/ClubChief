@@ -1,0 +1,26 @@
+<h1>Join clubs</h1>
+
+    <% if @clubs.count > 0 %>
+    <div class="list">
+        <% @clubs.each do |club| %>
+           <div class="row_top"></div>
+            <div class="row_extend">
+             <span class="row_left">
+                 <div class="row_header"><%= club.name %> | <%= club.town_city.name %></div>
+                 <%= club.description %>
+              </span>
+              <span class="row_right">
+                <%= link_to '' , apply_club_path(club.id), :class=>"join_icon right" %>
+              </span>
+              <div class="clear"></div>
+            </div>
+            <div class="row_bottom"></div>
+
+        <% end %>
+        </div>
+    <% else %>
+        <h2>There are no clubs available.</h2>
+    <% end %>
+
+	<%= link_to "Register club", new_club_path, :class =>"button add_wide_btn"%>
+    <%= link_to "Back", my_clubs_path, :class =>"button back_btn" %>

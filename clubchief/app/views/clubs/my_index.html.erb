@@ -1,0 +1,34 @@
+<h1>Your Clubs</h1>
+<% if @clubs.count > 0 %>
+    <div class="list">
+        <% @clubs.each do |club| %>
+
+        <div class="row_top"></div>
+            <div class="row_extend">
+             <span class="row_left">
+
+						<div class="row_header"><%= club.name %> | <%= club.town_city.name %></div>
+						<%= club.description %>
+
+            </span>
+            <span class="row_right">
+                 <% if is_club_admin?(club) %>
+                    <%= link_to "", edit_club_path(club) , :class=>"edit_icon " %>
+                    <%= link_to "", manage_club_path(club.id), :class=>"manage_icon " %>
+                    <%= link_to "", club_path(club.id),:method => :delete,
+                            :confirm => "Are you sure you want to delete #{club.name}?\n(This cannot be undone)" , :class=>"delete_icon" %>
+                 <% else %>
+                    <%= link_to '', remove_club_path(club.id), :class=>"leave_icon " %>
+                 <% end %>
+              </span>
+              <div class="clear"></div>
+              </div>
+
+            <div class="row_bottom"></div>
+        <% end %>
+    </div>
+<% else %>
+    <h2>You are currently not a member of any clubs.</h2>
+<% end %>
+<%= link_to "Join clubs", clubs_path, :class =>"button add_btn left"%>
+<%= link_to "Register new club", new_club_path, :class =>"button add_wide_btn left"%>

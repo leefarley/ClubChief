@@ -1,0 +1,57 @@
+
+
+		<div id="home_title">
+			 Easy sports team management
+		</div>
+		<div  id="visitor_content">
+
+		     <div id="home" class="content_item">
+				  	<%= link_to "Sign up", new_user_path , :class => "button left register edit_btn" ,:style=>"margin-top:0;" %>
+				    <%= link_to "Log In", new_session_path , :class => "button left login login_btn" ,:style=>"margin-top:0;" %>
+
+				    <div class="clear">
+						<p><br/>Club Chief is a sports club management system that provides easy and effective access to club information and events.</p>
+						<p>It's your portal to communicate between members and administrators.</p>
+						<p>Best of all, it's free!</p>
+					</div>
+			  </div>
+			  <div id="loginBox" class="content_item hidden" style="display: none;" ><%= render "home/login" %></div>
+			  <div id="registerBox" class="content_item hidden"><%= render "home/register" %></div>
+			  <div id="recoverBox" class="content_item hidden"><%= render "home/recover_password" %></div>
+		</div>
+		<div class="clear"></div>
+
+    <script>
+    	$(".textbox").addPlaceholder();
+        $("#visitor_content .content_item").removeClass("hidden");
+      	$("#visitor_content .content_item:not(:first)").hide();
+        $('.login').live("click",function () {
+            $("#visitor_content  .content_item").fadeOut(300);
+            $("#visitor_content").delay(200).animate({
+              height:"270px"
+            },200);
+            $("#loginBox").delay(300).fadeIn(300);
+            return false;
+        });
+        $('.register').live("click",function () {
+            $("#visitor_content  .content_item").fadeOut(200);
+
+            $("#visitor_content").delay(200).animate({
+              height:"350px"
+            },200);
+
+            $("#registerBox").delay(300).fadeIn(300, "linear");
+
+            return false;
+        });
+       $('.recover').live("click",function () {
+            $("#visitor_content  .content_item").fadeOut(300);
+
+            $("#visitor_content").delay(200).animate({
+              height:"270px"
+            },200);
+
+            $("#recoverBox").delay(300).fadeIn(300);
+           return false;
+        });
+    </script>

@@ -1,0 +1,65 @@
+<script>
+   $(document).ready(function() {
+    $('ul#accordion a.heading').click(function() {
+        $(this).css('outline','none');
+        if($(this).parent().hasClass('current')) {
+            $(this).siblings('ul').slideUp('slow',function() {
+                $(this).parent().removeClass('current');
+            });
+        } else {
+            $('ul#accordion li.current ul').slideUp('slow',function() {
+                $(this).parent().removeClass('current');
+            });
+            $(this).siblings('ul').slideToggle('slow',function() {
+                $(this).parent().toggleClass('current');
+            });
+        }
+        return false;
+    });
+});
+</script>
+
+<ul id="accordion">
+    <li><%= link_to "Home", home_path %></li>
+	<li>
+       <a href="#" class="heading">Clubs</a>
+        <ul>
+            <li><%= link_to "Your clubs", my_clubs_path %></li>
+            <li><%= link_to "Join a club", clubs_path %></li>
+            <li><%= link_to "Add members", :controller => 'admin_users', :action => 'new' %></li>
+            <li><%= link_to "Create club", new_club_path %></li>
+        </ul>
+    </li>
+
+    <li>
+      <a href="#" class="heading">Teams</a>
+		<ul>
+			<li><%= link_to "Your teams", :controller => 'teams', :action=> 'index'%></li>
+			<li><%= link_to "Create team" , new_team_path %></li>
+		</ul>
+    </li>
+
+    <li>
+      <a href="#" class="heading">Competitions</a>
+		<ul>
+			<li><%= link_to "Available competitions", :controller => 'competitions', :action=> 'index'%></li>
+			<li><%= link_to "Applications", :controller => 'competition_applications', :action=> 'index'%></li>
+    		<li><%= link_to "Manage competitions", admin_competitions_path %></li>
+			<li><%= link_to "Create competition", new_admin_competition_path %></li>
+		</ul>
+    </li>
+
+    <li>
+      <a href="#" class="heading">Calendar</a>
+		<ul>
+			<li><%= link_to "Your calendar", :controller => 'calendar', :action=> 'index' %></li>
+			<li><%= link_to "Your notifications", notifications_path %></li>
+			<li><%= link_to "Create event", new_event_path %></li>
+			<li><%= link_to "Create notification", new_notification_path %></li>
+		</ul>
+    </li>
+    <li><%= link_to "Profile", user_path(get_current_user_id) %></li>
+</ul>
+
+
+

@@ -1,0 +1,95 @@
+
+
+/*
+   Wrapping long strings in tables (if you know a better way to do it
+   without tables please change this to be more dynamic for size changes)
+   Tables are mad fussy about sizing even with other tags inside them.
+
+   Note: At the moment if an avatar size changes, the td width will not
+   change with the image size. Fixed at 43px.
+*/
+
+/* ########################### */
+
+
+
+.margin-left {
+    margin-left: auto;
+}
+
+.margin-right {
+    margin-right: auto;
+}
+
+.margin-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.red{
+    color:red;
+}
+
+.right{
+ float:right;
+}
+
+.left{
+ float:left;
+}
+
+.clear{
+  clear: both;
+}
+
+.center{
+    text-align:center;
+}
+
+.border{
+	border: 1px solid #e0e0e0;
+	padding: 5px;
+	margin: 10px;
+}
+
+.rename{
+	font-size: 80%;
+}
+
+.collection_select{
+    width:300px;
+}
+
+/*.list{*/
+ /*height : 450px; */
+ /*overflow : auto; */
+ /*border: 1px solid #e0e0e0;*/
+ /*width: 47%;*/
+ /*padding:7px;*/
+ /*float: left;*/
+/*}*/
+
+.list .member{
+	border-bottom: 1px solid #353535;
+	height: 36px;
+}
+
+.list h3{
+	padding: 10px 0px 0px 10px;
+	margin: 0px;
+	float:left;
+}
+
+.list .member img{
+	float: left;
+	padding-top: 3px;
+}
+.list .member .last {
+	border: none;
+}
+
+
+
+
+
+

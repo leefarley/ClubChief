@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ClubChief</title>
+    <% if logged_in? %>
+        <% status = true %>
+    <% else %>
+        <% status = false %>
+    <% end %>
+	<%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "jquery.validate.min"%>
+    <%= javascript_include_tag "jquery.placeholder" %>
+    <%= stylesheet_link_tag 'scaffold'  %>
+    <%= stylesheet_link_tag 'custom' %>
+    
+	<% if status %>
+			<%= stylesheet_link_tag 'member.master'  %>
+			<%= stylesheet_link_tag 'jquery-ui' %>
+			<%= javascript_include_tag "jquery-ui-timepicker-addon" %>
+	<% else %>
+			<%= stylesheet_link_tag 'visitor.master'  %>
+	<% end %>
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+    <%= favicon_link_tag '/favicon.png' %>
+  </head>
+  <body>
+  	<div id="container">
+            <% if flash[:alert] != "" and flash[:alert] != nil %>
+                <div class="flash alert hidden"><%= flash[:alert] %></div> <% flash[:alert] = "" %>
+            <% end %>
+            <% if flash[:success] != "" and flash[:success] != nil %>
+                <div class="flash success hidden"><%= flash[:success] %></div> <% flash[:success] = "" %>
+            <% end %>
+        <div id="header">
+        <% if status %>
+            <%= link_to "", logout_path, :id => "logout" %>
+        <% else %>
+            <%= link_to "", home_path, :id => "home" %>
+        <% end %>
+      </div>
+        <div id="content">
+          <% if status %>
+            <div id="menu">
+            <% if is_a_club_admin? %>
+                 <%= render 'layouts/admin_menu'%>
+            <% else %>
+                 <%= render 'layouts/member_menu'%>
+            <% end %>
+            </div>
+          <% end %>
+
+           <div id="main">
+            <%= yield %>
+           </div>
+          <div class="clear"></div>
+        </div>
+
+      <div id="footer"></div>
+	</div>
+  </body>
+</html>
+<script>
+  $(document).ready(function(){
+    $(".flash").fadeIn(1000).click(function(){$(".flash").fadeOut(1000)}).delay(5000).fadeOut(1000);
+  })
+</script>
+
+

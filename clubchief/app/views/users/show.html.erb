@@ -1,0 +1,42 @@
+
+<h1>
+<%=@user.full_name%>
+</h1>
+  <p>
+    <b>First name:</b>
+    <%= @user.first_name %>
+  </p>
+  <p>
+    <b>Last name:</b>
+    <%= @user.last_name %>
+  </p>
+
+  <p>
+    <b>Email:</b>
+    <%= @user.email %>
+  </p>
+  
+  <% if @user.student_id and @user.student_id != "" %>
+    <p>
+      <b>Student ID</b>
+      <%= @user.student_id%>
+    </p>
+  <% end %>
+  
+  <% if @user.address and @user.address != "" %>
+	<p>
+        <b>Address</b>
+        <%= @user.address %>
+    </p>
+  <% end %>
+  
+  <% if @user.phone and @user.phone != "" %>
+	<p>
+        <b>Phone Number</b>
+        <%= @user.phone %>
+    </p>
+  <% end %>
+
+<%= link_to 'Edit', edit_user_path(@user), :class => "button edit_btn left" %>
+<%= link_to 'Change Password', change_password_path(@user.id), :class => "button edit_wide_btn left" %>
+

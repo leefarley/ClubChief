@@ -1,0 +1,29 @@
+<h1>
+  Your notifications
+</h1>
+<% if @notifications.count > 0 %>
+    <%= will_paginate @notifications %>
+    <div class="list">
+      <% @notifications.each do |note| %>
+        <div class="row_top"></div>
+        <div class="row_extend">
+              <span class="row_left">
+                <div class="row_text"><%= note.message %></div>
+                Posted <%= time_ago_in_words(note.created_at) %> ago from <%= note.team.club.name %>
+              </span>
+              <span class="row_right">
+              <% if is_admin?(get_current_user) %>
+                <%= link_to "", notification_path(note), :confirm => 'Are you sure?', :method => :delete, :class => "delete_icon right" %>
+                <%= link_to "", edit_notification_path(note), :class => "edit_icon right" %>
+              <% end %>
+              </span>
+                <div class="clear"></div>
+    </div>
+    <div class="row_bottom"></div>
+      <% end %>
+        </div>
+<% else %>
+    <i>Currently no notifications available.</i>
+<% end %>
+
+<%= link_to "Add Notification", new_notification_path, :class =>"button add_wide_btn" %>

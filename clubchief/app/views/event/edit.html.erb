@@ -1,0 +1,63 @@
+<h1>Edit <%= @event.name %></h1>
+<%= form_for @event, :url => {:controller => "event", :action => "update", :id => @event} do |f| %>
+
+    <label class="input-label">
+      <%= f.text_field :name, :maxlength => 30, :class=>"textbox", :placeholder => "Event name" %>
+    </label>
+    <br/>
+    <label class="input-label">
+      <%= f.text_area :message, :maxlength => 256, :class=>"textarea", :placeholder=> "Event message", :size => "33x5" %>
+    </label>
+    <br/>
+    <label class="input-label">
+      <%= f.text_field :start_at, :maxlength => 15, :class=>"textbox", :placeholder => "Start at", :value => @event.start_at.strftime('%d/%m/%Y %H:%M %P') %>
+    </label>
+    <br/>
+    <label class="input-label">
+      <%= f.text_field :end_at, :maxlength => 15, :class=>"textbox", :placeholder => "End at", :value => @event.end_at.strftime('%d/%m/%Y %H:%M %P') %>
+    </label>
+    <br/>
+    <%= f.submit "Save changes", :class=>"button edit_wide_btn" %>
+<% end %>
+   <%= link_to "Back", @event, :class => "button back_btn" %>
+<script>
+    $(document).ready(function() {
+        $('#start_at').datetimepicker({
+            ampm: true,
+            dateFormat: 'dd/mm/yy',
+            hour: 8,
+            minDate: new Date()
+        });
+        $('#end_at').datetimepicker({
+            ampm: true,
+            dateFormat: 'dd/mm/yy',
+            hour: 8,
+            minDate: new Date()
+        });
+        $(".textbox").addPlaceholder();
+        $("#event_name").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a event name",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+        $("#event_message").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a event message",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+        $("#event_start_at").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a valid event start date",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+        $("#event_end_at").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a event end date",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+    });
+</script>

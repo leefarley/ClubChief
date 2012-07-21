@@ -1,0 +1,41 @@
+<h1>Manage <%= @team.name %></h1>
+<h2 class="list_title left">Your team</h2><h2 class="list_title right">Available players</h2>
+<br class="clear" />
+<div class="list_short left">
+
+  <% if @assigned_admin.count() > 0 || @assigned_members.count() > 0 %>
+      <% @assigned_admin.each do |membership| %>
+          <div class="row_short">
+            <span class="admin_icon left" ></span>
+            <h3 class="left"><%= membership.user.full_name %></h3>
+            <%= link_to "", remove_comp_membership_path(membership.user_id), :class => "remove_icon right" %>
+
+          </div>
+      <% end %>
+      <% @assigned_members.each do |membership| %>
+          <div class="row_short">
+            <%= link_to "", assign_team_admin_path(:user_id => membership.user_id, :team_id => @team.id), :class => "make_admin_icon left" %>
+            <h3 class="left"><%= membership.user.full_name %></h3>
+            <%= link_to "", remove_comp_membership_path(membership.id), :class => "remove_icon right" %>
+
+          </div>
+      <% end %>
+  <% else %>
+      <div class="row_short" style="background:  none;">
+        <h3>There are no members assigned to <%= @team.name %></h3>
+      </div>
+  <% end %>
+</div>
+
+<div class="list_short right">
+
+  <% @unassigned_applications.each do |application| %>
+      <div class="row_short">
+        <h3 class="left"><%= application.user.full_name %></h3>
+        <%= link_to "", create_comp_membership_path(:team_id=>@team.id, :application_id=>application.id), :class => "add_icon right" %>
+      </div>
+  <% end %>
+</div>
+<br class="clear" />
+<%= link_to "All teams", teams_path, :class => "button back_btn left" %>
+<%= link_to "Competition teams", manage_competition_path(@team.competition_id), :class => "button login_wide_btn left" %>

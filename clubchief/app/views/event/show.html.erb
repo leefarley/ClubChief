@@ -1,0 +1,46 @@
+<h1 class="left"><%= @event.team.name %>: <%= @event.name %></h1>
+
+<% if is_admin?(get_current_user) %>
+    <%= link_to "", event_path(@event), :confirm => 'Are you sure?', :method => :delete, :class => "delete_icon right" %>
+    <%= link_to "", edit_event_path(@event), :class => "edit_icon right" %>
+<% end %>
+<br class="clear"/>
+<b>Date: </b><%= @event.start_at.strftime("%A %d %b") %>
+<% if @event.start_at.day != @event.end_at.day %>
+    - <%= @event.end_at.strftime("%A %d %b") %>
+<% end %><br />
+<b>Start time: </b><%= @event.start_at.strftime("%I:%M %p") %>
+<br/>
+<b>Details:</b>
+<p>
+  <%= @event.message %>
+</p>
+
+<div class="list">
+  <% @attendees.each do |attendee| %>
+      <div class="row">
+        <% if attendee.attending == true %>
+            <a href="" class="attending_icon left"></a>
+        <% else %>
+            <a href="" class="not_attending_icon left"></a>
+        <% end %>
+        <% user = attendee.user; current_user = get_current_user %>
+        <div class="left">
+          <h3><%= user.full_name %></h3>
+        </div>
+        <% if attendee.attending == true %>
+            <% if is_admin?(current_user) or attendee.user_id == current_user.id %>
+                <%= link_to "", not_attending_event_path(:attendee_id => attendee.id, :event_id => @event.id, :event => @event), :class => "change_icon right" %>
+            <% else %>
+                <!-- reserved for another feature -->
+            <% end %>
+        <% else %>
+            <% if is_admin?(current_user) or attendee.user_id == current_user.id %>
+                <%= link_to "", attending_event_path(:attendee_id => attendee.id, :event_id => @event.id, :event => @event), :class => "change_icon right" %>
+            <% else %>
+                <!-- reserved for another feature -->
+            <% end %>
+        <% end %>
+      </div>
+  <% end %>
+</div>

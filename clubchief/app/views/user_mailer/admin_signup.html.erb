@@ -1,0 +1,15 @@
+<p>Hi <%= @user.first_name %>,</p>
+
+<p>
+You have been signed up to <%= @club.name %> through ClubChief administration system.<br/>
+Your password for siging in to clubchief is:<br/>
+<br/><%= @user.password %>
+</p>
+
+<p>
+	you can access you clubs events and notifications at:<br/>
+	https://<%=base_url%>/
+</p>
+<br/>
+Regards,<br/>
+Elastic Monkey Team

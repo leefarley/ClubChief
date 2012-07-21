@@ -1,0 +1,15 @@
+<h1>Pending Applications</h1>
+
+<% if @pending_applications.count() > 0 %>
+<div class="list">
+<% @pending_applications.each do |application| %>
+    <div class="row">
+      <div class="right" style= "padding: 3px 20px 0 0;"><h3><%= application.competition.deadline.strftime("%A, %d %b")  %></h3></div>
+      <h3 style= "padding: 13px 10px 0 10px;"><%= application.competition.club.name %> | <%= application.competition.name %> </h3>
+
+    </div>
+<% end %>
+</div>
+<% else %>
+   <h2>You currently have no pending competitions </h2>
+<% end %>

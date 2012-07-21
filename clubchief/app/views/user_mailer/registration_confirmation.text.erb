@@ -1,0 +1,10 @@
+
+
+<%= @user.first_name %>,
+
+Thank you for registering to Club Chief!
+
+Click here to verify your account: <%= link_to "http://" + base_url + user_verifications_path.to_s + "/verify?=" + @user.perishable_token + "-" + @user.id.to_s, "http://" + base_url + user_verifications_path.to_s + "/verify?=" + @user.perishable_token + "-" + @user.id.to_s %>
+
+Regards,
+Elastic Monkey Team

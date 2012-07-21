@@ -1,0 +1,29 @@
+<h1>Available Competitions</h1>
+
+<% if @competitions.count() > 0 %>
+    <div class="list">
+      <% @competitions.each do |competition| %>
+          <div class="row_top"></div>
+          <div class="row_extend">
+             <span class="row_left">
+                <div class="row_header"><%= competition.name %></div>
+                Club : <%= competition.club.name %>
+             </span>
+             <span class="row_right">
+                <%= link_to "", apply_competition_path(competition.id), :class=>"add_icon right" %>
+             </span>
+             <div class="clear"></div>
+          </div>
+          <div class="row_bottom"></div>
+      <% end %>
+    </div>
+<% else %>
+    <h2>There is currently no competitions available</h2>
+<% end %>
+  <% if is_a_club_admin? %>
+  <%= link_to "Add competition",new_admin_competition_path ,:class => "button add_wide_btn" %>
+<% end %>
+
+
+
+

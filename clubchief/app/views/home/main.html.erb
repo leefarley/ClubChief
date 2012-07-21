@@ -1,0 +1,5 @@
+<% if logged_in? %>
+	<%= render "home/signed_in" %>
+<% else %>
+	<%= render "home/visitor" %>
+<% end %>

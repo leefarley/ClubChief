@@ -1,0 +1,35 @@
+<h1>Create team</h1>
+  
+<% form_for Team.new do |f|%>
+
+		<% if @clubs.length > 1 %>
+		      <label class="input-label">
+            		<%=  f.collection_select :club_id, @clubs, :id, :name, {:include_blank => 'Select a club'},{:class => 'combobox' } %><br />
+      		</label>
+		<% else %>
+			    <%= f.hidden_field :club_id, :value => @clubs.first.id %>
+		<% end %>
+    	<label class="input-label">
+   			<%=  f.text_field :name , :maxlength => 20,  :class=>"textbox" , :placeholder => "Team name" %>
+   		</label>
+   		<br />
+          <%= f.submit "Add team", :class=>"button add_btn"%>
+<% end %>
+<script type="text/javascript">
+   $(function(){
+      $(".textbox").addPlaceholder();
+      $(".combobox").addPlaceholder();
+      $("#team_name").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a team name",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+      $("#team_club_id").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please select a club for this team",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+      });
+   });
+</script>

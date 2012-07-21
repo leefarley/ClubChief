@@ -1,0 +1,14 @@
+<%= @user.first_name %> <%= @user.last_name %> has created a new event!<br/>
+<br/>
+<b>Event:</b> <%= link_to @event.name, "http://" + base_url + event_path(@event) %><br/>
+<b>Team(s):</b> <%= @event.team.name %><br/>
+<b>Start Date:</b> <%= @event.start_at.strftime('%d/%m/%Y %H:%M %p') %><br/>
+<b>End Date:</b> <%= @event.end_at.strftime('%d/%m/%Y %H:%M %p')  %><br/>
+<b>Details:</b><br/>
+<%= @event.message %>
+
+<br/><br/>
+<b>Status:</b> Attending<br/>
+<br/>
+If you would like to change your <b>attending status</b> visit this link:<br/>
+<%= link_to "http://" + base_url + event_path(@event) + "/change_status/" + @attendee.encrypted_id, "http://" + base_url + event_path(@event) + "/change_status/" + @attendee.encrypted_id %>

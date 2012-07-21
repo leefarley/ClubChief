@@ -1,0 +1,46 @@
+body{
+   background: url("../images/bg_texture.jpg") repeat;
+}
+
+#container{
+    width: 962px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header{
+    background-image: url("../images/bg_header.jpg") ;
+    height: 316px;
+}
+
+#content{
+    background-image: url("../images/bg_main.jpg");
+    min-height: 270px;
+}
+
+#footer{
+    background-image: url("../images/bg_footer.jpg");
+    height:90px;
+}
+
+#home_title{
+	float:left;
+	width:327px;
+    font-family: 'Coustard', serif;
+    font-weight: 400;
+    font-size: 29px;
+    line-height: 32px;
+	text-align: right;
+    color: #a6a6a6;
+}
+
+#home{display: block; height: 316px; width: 100%;}
+
+#visitor_content p{ font-size: 14pt; clear:both;}
+ 
+#visitor_content{
+	float:right;
+	width:528px;
+	height:200px;
+    margin-right: 45px;
+}

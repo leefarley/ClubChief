@@ -1,0 +1,46 @@
+
+
+body{
+   background: url("../images/bg_texture.jpg") repeat;
+
+}
+
+#container{
+    width: 962px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header{
+    background-image: url("../images/app_bg_header.jpg") ;
+    background-repeat: no-repeat;
+    height: 205px;
+}
+
+#menu{
+    float: left;
+	min-height: 270px;
+	width: 222px;
+}
+
+#main{
+    float: right;
+    width: 663px;
+    padding-right: 45px;
+    padding-left: 30px;
+
+}
+
+#content{
+    background-image: url("../images/app_bg_main.jpg");
+	min-height: 440px;
+    height: auto !important;
+    height:440px;
+}
+
+#footer{
+	clear:both;
+    background-image: url("../images/app_bg_footer.jpg");
+    background-repeat: no-repeat;
+    height:94px;
+}

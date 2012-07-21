@@ -1,0 +1,52 @@
+<h1>Add  a new user</h1>
+
+<% form_for @user , :url => {:controller => "admin_users" , :action => "create"} do |f| %>
+<div class="content round">
+  
+<% if @clubs.length > 1 %>
+			 <label class="input-label">
+            		<%=  collection_select :post, :club_id, @clubs, :id, :name, {:include_blank => 'Select club'},{:class => 'combobox' } %> <br />
+      		</label>
+<% else %>
+			<%= hidden_field :post, :club_id, :value => @clubs.first.id %>
+<% end %>
+
+    	<label class="input-label">
+   		<%=  f.text_field :first_name , :maxlength => 20,  :class=>"textbox" , :placeholder => "First Name" %>
+   		</label>
+   		<br />
+    	<label class="input-label">
+   		<%=  f.text_field :last_name , :maxlength => 20,  :class=>"textbox" , :placeholder => "Last Name" %>
+   		</label>
+   		<br />
+    	<label class="input-label">
+   		<%=  f.text_field :email , :maxlength => 60,  :class=>"textbox" , :placeholder => "Email" %>
+   		</label>
+   		<br />
+  		<%= f.submit "Add user" , :class=>"button add_btn" %>
+
+<% end %>
+</div>
+<script type="text/javascript">
+   $(function(){
+      $(".textbox").addPlaceholder();
+      $("#user_first_name").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a first name",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+      $("#user_last_name").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a last name",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+      });
+      $("#user_email").validate({
+            expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message: "Please enter a valid email",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+   });
+</script>

@@ -1,0 +1,34 @@
+<h1>Create Notification</h1>
+<%= form_for @notification , :url => { :action => "create" } do |f| %>
+	<label class="input-label">
+			<%=  f.text_area :message , :maxlength => 256,  :class=>"textarea" , :placeholder => "Message" %>
+	</label>
+	<br />
+	<label class="input-label">
+  			<%= f.collection_select :team_id, @teams, :id, :name, {:include_blank => 'Select club/team'},{:class => 'combobox' }%>
+  	</label>
+  	<br />
+  	<label class="input-label">
+    	<%= f.check_box :send_email, :checked => true %>Email team members.<br /><br />
+  	</label>
+    <%= f.submit "Create notification", :class=>"button add_wide_btn"%>
+
+<% end %>
+  <script>
+    $(function(){
+      $(".textbox").addPlaceholder();
+      $(".combobox").addPlaceholder();
+      $("#notification_message").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a notification message",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+      });
+      $("#notification_team_id").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please select a club or team",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+      });
+   });
+</script>

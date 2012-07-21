@@ -1,0 +1,12 @@
+<h1>Add New Team</h1>
+<% form_for Team.new , :url => { :controller => :admin_competitions, :action => :create_team } do |f|%>
+          <%= f.hidden_field :club_id, :value => @competition.club_id %>
+          <%= f.hidden_field :competition_id, :value =>@competition.id %>
+          <%= f.text_field :name, :class => "textbox", :placeholder=>"Team name" %><br />
+          <%= f.submit "Add team", :class => "button add_btn"%>
+<% end %>
+
+<%= link_to "Back", manage_competition_path(@competition.id), :class => "button back_btn" %>
+<script type="text/javascript">
+    $(".textbox").addPlaceholder();
+</script>

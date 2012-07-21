@@ -1,0 +1,11 @@
+<h1>Create events</h1>
+
+<div class="content">
+    <table>
+        <% @event.each do |event| %>
+          <tr>
+            <td><h3> <%= event.name %> </h3></td>
+          </tr>
+        <%  end %>
+    </table>
+</div>

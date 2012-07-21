@@ -1,0 +1,52 @@
+<h1>Your teams</h1>
+
+    <% if is_a_club_admin? %>
+        <% club_admin = true %>
+    <% else %>
+        <% club_admin = false %>
+    <% end %>
+
+    <% if @manageable_teams.count > 0 || @teams.count > 0 %>
+
+            <% @manageable_teams.each do |team| %>
+              <div class="row">
+                <span class="row_left">
+                    <div class="row_title"><%= team.name %></div>
+                    Club: <%= team.club.name %>
+                <% if team.competition %>
+                    | Competition: <%= team.competition.name %>
+                    </span>
+                    <span class="row_right">
+                  <%= link_to "", remove_team_path(:team_id => team.id), :confirm => "Are you sure you want to delete #{team.name}?\n(This cannot be undone)", :class=>"delete_icon right" %>
+                  <%= link_to "", competition_team_manage_path(:team_id =>team.id), :class=>"manage_icon right" %>
+                <% else %>
+                    </span>
+                    <span class="row_right">
+                  <%= link_to "", remove_team_path(:team_id => team.id), :confirm => "Are you sure you want to delete #{team.name}?\n(This cannot be undone)", :class=>"delete_icon right" %>
+                  <%= link_to "", manage_team_path(:team_id =>team.id), :class=>"manage_icon right" %>
+                <% end %>
+                <% if club_admin %>
+                    <%= link_to "", edit_team_path(team.id), :class => "edit_icon right"  %>
+                <% end %>
+                </span>
+              </div>
+            <% end %>
+
+            <% @teams.each do |team| %>
+              <div class="row">
+                <h3><%= team.name %> </h3>
+                Club: <%= team.club.name %>
+              <% if team.competition %>
+                Competition: <%= team.competition.name %>
+              <% end %>
+              </div>
+            <% end %>
+
+    <% else %>
+        <h2>You are currently not part of any teams.</h2>
+    <% end %>
+
+<% if club_admin %>
+  <%= link_to "Add new team ", new_team_path, :class => "button add_wide_btn" %>
+<% end %>
+

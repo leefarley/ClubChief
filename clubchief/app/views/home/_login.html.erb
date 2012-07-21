@@ -1,0 +1,37 @@
+<h1>Please enter your user details</h1>
+<%= form_tag(verify_login_path())  do %>
+		<label class="input-label">
+    	<%= text_field_tag :email, '', :maxlength => 60,  :class=>"textbox", :placeholder => "Email"  %>
+    	</label><br />
+    	<label class="input-label">
+   		<%= password_field_tag :password, '', :maxlength => 100,  :class=>"textbox" , :placeholder => "Password" %>
+   		</label>
+    <p>
+   	    <%= submit_tag 'Log in', :class=> "button left login_btn" %>
+        <div class="left" style="margin-top:20px;">
+          <%= link_to "Forgot your password?", recover_password_path , :class => "recover" %><br />
+            <%= link_to "Dont have a account?", new_user_path , :class => "register" %>
+        </div>
+	</p>
+  <% end %>
+
+<script type="text/javascript">
+   $(function(){	
+      $(".textbox").addPlaceholder();
+      $("#email").validate({
+            expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message: "Please enter a valid email",
+             error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+      $("#password").validate({
+            expression: "if (VAL.length > 5 && VAL) return true; else return false;",
+            message: "Must contain 6 characters",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+        
+        
+	});
+  </script>
+

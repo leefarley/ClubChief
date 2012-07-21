@@ -1,0 +1,23 @@
+<h1><%= @club.name.capitalize %> member list</h1>
+<div class="list">
+<% @admins.each do |admin| %>
+      <div class="row">
+        <div class="row_left">
+		    <h3><%= admin.full_name %></h3>
+        </div>
+        <span class="admin_icon right" ></span>
+      </div>
+<% end %>
+
+<% @members.each do |member| %>
+      <div class="row">
+        <div class="row_left">
+		    <h3><%= member.full_name %></h3>
+        </div>
+        <%= link_to "", assign_admin_path(:user_id => member.id, :club_id => @club.id), :class=>"make_admin_icon right"%>
+      </div>
+<% end %>
+</div>
+<%= link_to "Back", my_clubs_path , :class =>"button back_btn left"%>
+<%= link_to "Add new member", users_admin_new_path , :class =>"button add_wide_btn left" %>
+

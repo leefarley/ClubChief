@@ -1,0 +1,65 @@
+<h1>Register new club</h1>
+<%= form_for(@club) do |f| %>
+
+    <label class="input-label">
+      <%= f.text_field :name, :maxlength => 40, :class=>"textbox", :placeholder => "Club Name" %>
+    </label>
+    <br/>
+    <label class="input-label">
+      <%= f.text_area :description, :maxlength => 256, :class=>"textarea", :placeholder=> "Club Description", :size => "33x5" %>
+    </label>
+    <br/>
+    <label class="input-label">
+      <%= f.collection_select :sport_id, @sports, :id, :sport_name,
+                              {:include_blank => 'Select a Sport'}, {:class => 'combobox'} %>
+    </label>
+    <br/>
+    <label class="input-label">
+      <%= f.text_field :street_address, :maxlength => 40, :class=>"textbox", :placeholder => "Street Address" %>
+    </label>
+    <br/>
+    <label class="input-label">
+      <%= f.text_field :suburb, :maxlength => 40, :class=>"textbox", :placeholder => "Suburb" %>
+    </label>
+    <br/>
+    <label class="input-label">
+      <%= f.collection_select :town_city_id, @towncity, :id, :name,
+                              {:include_blank => 'Select a Town/City'}, {:class => 'combobox'} %>
+    </label>
+
+    <div class="actions">
+      <%= f.submit "Add club", :class =>"button add_btn" %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+   $(function(){
+      $(".textbox").addPlaceholder();
+      $(".textarea").addPlaceholder();
+      $(".combobox").addPlaceholder();
+      $("#club_name").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a valid club name",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+        });
+      $("#club_description").validate({
+            expression: "if (VAL.length > 5 && VAL) return true; else return false;",
+            message: "Must contain 6 characters",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+      });
+      $("#club_sport_id").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please Select a sport type",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+      });
+      $("#club_town_city_id").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please select a town or city",
+            error_field_class: "field_with_errors",
+            error_class: "error_message"
+      });
+	});
+  </script>

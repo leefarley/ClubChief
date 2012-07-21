@@ -1,0 +1,26 @@
+<h1>Edit <%= @competition.name %></h1>
+
+
+    <%= form_for @competition, :url => {:controller => 'admin_competitions',:action => 'update', :id => @competition.id} do |f| %>
+
+      <label class="input-label">
+   		<%=  f.text_field :name ,  :class=>"textbox" , :placeholder => "Competition name" %>
+      </label>
+          <br/>
+   	<label class="input-label">
+   			<%=  f.text_field :deadline, :value => @competition.deadline.strftime('%d/%m/%Y')  ,  :class=>"textbox" , :placeholder => "Competition deadline" %>
+    </label>
+    <br />
+    <%= f.submit "Save changes", :class=>"button edit_wide_btn" %>
+
+    <% end %>
+<%= link_to 'Back', admin_competitions_path, :class=>"button back_btn" %>
+
+<script>
+	$(document).ready(function(){	
+			$('#competition_deadline').datepicker({
+        			dateFormat: 'dd/mm/yy',
+					minDate: new Date()
+			});
+	});
+</script>

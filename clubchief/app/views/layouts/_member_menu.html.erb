@@ -1,0 +1,47 @@
+<script>
+   $(document).ready(function() {
+    $('ul#accordion a.heading').click(function() {
+        $(this).css('outline','none');
+        if($(this).parent().hasClass('current')) {
+            $(this).siblings('ul').slideUp('slow',function() {
+                $(this).parent().removeClass('current');
+            });
+        } else {
+            $('ul#accordion li.current ul').slideUp('slow',function() {
+                $(this).parent().removeClass('current');
+            });
+            $(this).siblings('ul').slideToggle('slow',function() {
+                $(this).parent().toggleClass('current');
+            });
+        }
+        return false;
+    });
+});
+</script>
+<ul id="accordion">
+	<li><%= link_to "Home", home_path %></li>
+	<li>
+		<a href="#" class="heading">Clubs</a>
+		<ul>
+			<li><%= link_to "Your clubs", my_clubs_path %></li>
+			<li><%= link_to "Join clubs", clubs_path %></li>
+			<li><%= link_to "Create club", new_club_path %></li>
+		</ul>
+	</li>
+	<li><%= link_to "Teams", :controller => 'teams', :action=> 'index'%></li>
+	<li>
+		<a href="#" class="heading">Competitions</a>
+		<ul>
+			<li><%= link_to "Available competitions", :controller => 'competitions', :action=> 'index'%></li>
+			<li><%= link_to "Applications", :controller => 'competition_applications', :action=> 'index'%></li>
+		</ul>
+	</li>
+	<li>
+        <a href="#" class="heading">Calendar</a>
+		<ul>
+			<li><%= link_to "Your calendar", :controller => 'calendar', :action=> 'index' %></li>
+			<li><%= link_to "Your notifications", notifications_path %></li>
+		</ul>
+	</li>
+    <li><%= link_to "Profile", user_path(get_current_user_id) %></li>
+</ul>

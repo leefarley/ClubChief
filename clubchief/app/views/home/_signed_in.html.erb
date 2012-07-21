@@ -1,0 +1,39 @@
+
+    <!-- Initialize Variables -->
+    <%
+       user = get_current_user
+       latest_note = get_user_latest_notification
+       latest_event = get_user_latest_event
+    %>
+
+    <h1>Welcome back <%=user.full_name%>!</h1>
+
+    <!--Display the latest notification-->
+    <b>Latest Notice:</b><br/>
+        <% if latest_note != nil %>
+            <div>
+                <%= latest_note.message %><br />
+                <%= link_to "Posted " + time_ago_in_words(latest_note.created_at) + " ago from " + latest_note.team.club.name, notifications_path %>
+            </div>
+        <% else %>
+            <p><i>You don't currently have any recent notifications.</i></p>
+        <% end %>
+   <br/>
+
+    <!--Display the latest event-->
+    <b>Latest Event:</b><br/>
+    <div>
+        <% if latest_event != nil %>
+             <b>Starts:</b> <%=  latest_event.start_at.strftime("%A %b %d   %I:%M%p") %><br/>
+             <b>Ends:</b> <%=  latest_event.end_at.strftime("%A %b %d   %I:%M%p") %><br/>
+             <b>Details:</b> <%= latest_event.message %><br />
+             <b>Created by</b> <%= latest_event.user.full_name %> -
+              <%= link_to  time_ago_in_words(latest_event.created_at) + " ago from " + latest_event.team.club.name, latest_event %>
+        <% else %>
+            <p><i>You don't currently have any recent events.</i></p>
+        <% end %>
+    </div>
+   <!-- Logout button -->
+    <%= link_to "Logout", logout_path, :class =>"button edit_btn left"%>
+    <%= link_to "Register new club", new_club_path, :class =>"button add_wide_btn left"%>
+

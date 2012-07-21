@@ -1,0 +1,9 @@
+<h1>Home#login</h1>
+
+<div id='login_box'>
+  <%= form_tag('sessions#create')  do %>
+    	email <%= text_field_tag :email %>
+    	<br/>
+   	Password <%= password_field_tag :password %>
+  <% end %>
+</div>

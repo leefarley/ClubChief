@@ -1,0 +1,15 @@
+<h1>Edit Notification</h1>
+
+    
+    <%= form_for @notification, :method => :edit do |f| %>
+
+
+ <label class="field">
+    <%= f.text_area :message,:maxlength => 256, :class=>"textarea", :placeholder=> "Club Description", :size => "33x5" %><br />
+  </label>
+    <%= f.check_box :send_email, :checked => true %>Email team members.<br /><br />
+
+    <%= f.submit "Save changes", :class=>"button edit_wide_btn" %>
+
+    <% end %>
+<%= link_to 'Back', notifications_path , :class=>"button back_btn"%>

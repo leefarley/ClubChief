@@ -1,0 +1,41 @@
+<h1>Manage <%= @team.name %></h1>
+<h2 class="list_title left">Your team</h2><h2 class="list_title right">Available players</h2>
+<br class="clear" />
+<div class="list_short left">
+  <% if @admin_team_players.count() > 0 || @team_players.count() > 0 %>
+      <% @admin_team_players.each do |player| %>
+          <div class="row_short">
+            <span class="admin_icon left" ></span>
+            <h3 class="left"><%= player.full_name %></h3>
+            <%= link_to "", unassign_from_team_path(:team_id => @team.id, :user_id => player.id), :class => "remove_icon right" %>
+
+          </div>
+      <% end %>
+      <% @team_players.each do |player| %>
+          <div class="row_short">
+            <%= link_to "", assign_team_admin_path(:user_id => player.id, :team_id => @team.id), :class => "make_admin_icon left" %>
+            <h3 class="left"><%= player.full_name %></h3>
+            <%= link_to "", unassign_from_team_path(:team_id => @team.id, :user_id => player.id), :class => "remove_icon right" %>
+
+
+          </div>
+
+      <% end %>
+  <% else %>
+      <div class="row_short" style="background:  none;">
+        <h3>There are no members assigned to <%= @team.name %></h3>
+      </div>
+  <% end %>
+</div>
+
+<div class="list_short right">
+  <% @avalible_players.each do |player| %>
+      <div class="row_short">
+        <h3 class="left"><%= player.full_name %></h3>
+        <%= link_to "", assign_to_team_path(:team_id => @team.id, :user_id => player.id), :class => "add_icon right" %>
+      </div>
+  <% end %>
+</div>
+
+<br class="clear"/>
+<%= link_to "Back", teams_path, :class => "button back_btn" %>
